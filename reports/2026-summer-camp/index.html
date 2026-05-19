@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../../assets/style.css?v=3">
+  <link rel="stylesheet" href="../../assets/style.css?v=4">
 </head>
 <body>
 
@@ -38,10 +38,10 @@
 
     <!-- Tabs -->
     <div class="tabs" role="tablist">
-      <button class="tab-button active" data-tab="dcamp" role="tab">디캠프</button>
-      <button class="tab-button" data-tab="oyis" role="tab">OYIS</button>
-      <button class="tab-button" data-tab="compare" role="tab">비교</button>
-      <button class="tab-button" data-tab="summary" role="tab">종합</button>
+      <button type="button" class="tab-button active" data-tab="dcamp" role="tab" onclick="showTab('dcamp')">디캠프</button>
+      <button type="button" class="tab-button" data-tab="oyis" role="tab" onclick="showTab('oyis')">OYIS</button>
+      <button type="button" class="tab-button" data-tab="compare" role="tab" onclick="showTab('compare')">비교</button>
+      <button type="button" class="tab-button" data-tab="summary" role="tab" onclick="showTab('summary')">종합</button>
     </div>
 
     <!-- ───── 디캠프 ───── -->
@@ -246,20 +246,16 @@
 </footer>
 
 <script>
-(function () {
-  function activate(name) {
-    var buttons = document.querySelectorAll('.tab-button');
-    var panels = document.querySelectorAll('.tab-panel');
-    for (var i = 0; i < buttons.length; i++) {
-      buttons[i].classList.toggle('active', buttons[i].getAttribute('data-tab') === name);
-    }
-    for (var j = 0; j < panels.length; j++) {
-      panels[j].classList.toggle('active', panels[j].id === 'tab-' + name);
-    }
-    try { history.replaceState(null, '', '#' + name); } catch (e) {}
+function showTab(name) {
+  var buttons = document.querySelectorAll('.tab-button');
+  var panels = document.querySelectorAll('.tab-panel');
+  for (var i = 0; i < buttons.length; i++) {
+    buttons[i].classList.toggle('active', buttons[i].getAttribute('data-tab') === name);
   }
-  function init() {
-    var tabBar = document.querySelector('.tabs');
-    if (!tabBar) return;
-    tabBar.addEventListener('click', function (e) {
-      var btn = e.tar
+  for (var j = 0; j < panels.length; j++) {
+    panels[j].classList.toggle('active', panels[j].id === 'tab-' + name);
+  }
+  try { history.replaceState(null, '', '#' + name); } catch (e) {}
+}
+(function () {
+  var hash = (location.h
