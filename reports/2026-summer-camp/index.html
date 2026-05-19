@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../../assets/style.css?v=2">
+  <link rel="stylesheet" href="../../assets/style.css?v=3">
 </head>
 <body>
 
@@ -246,19 +246,20 @@
 </footer>
 
 <script>
-  // Tab switching
-  const tabs = document.querySelectorAll('.tab-button');
-  const panels = document.querySelectorAll('.tab-panel');
-  tabs.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const target = btn.dataset.tab;
-      tabs.forEach(b => b.classList.toggle('active', b === btn));
-      panels.forEach(p => p.classList.toggle('active', p.id === 'tab-' + target));
-      // Optional: update URL hash
-      history.replaceState(null, '', '#' + target);
-      // Scroll tab into view on small screens
-      btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
-    });
-  });
-  // Open tab from URL hash on load
-  const hash = l
+(function () {
+  function activate(name) {
+    var buttons = document.querySelectorAll('.tab-button');
+    var panels = document.querySelectorAll('.tab-panel');
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].classList.toggle('active', buttons[i].getAttribute('data-tab') === name);
+    }
+    for (var j = 0; j < panels.length; j++) {
+      panels[j].classList.toggle('active', panels[j].id === 'tab-' + name);
+    }
+    try { history.replaceState(null, '', '#' + name); } catch (e) {}
+  }
+  function init() {
+    var tabBar = document.querySelector('.tabs');
+    if (!tabBar) return;
+    tabBar.addEventListener('click', function (e) {
+      var btn = e.tar
