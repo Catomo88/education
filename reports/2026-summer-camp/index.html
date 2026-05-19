@@ -245,17 +245,8 @@
   © Catomo88 · 아이 교육 기록 아카이브
 </footer>
 
-<script>
-function showTab(name) {
-  var buttons = document.querySelectorAll('.tab-button');
-  var panels = document.querySelectorAll('.tab-panel');
-  for (var i = 0; i < buttons.length; i++) {
-    buttons[i].classList.toggle('active', buttons[i].getAttribute('data-tab') === name);
-  }
-  for (var j = 0; j < panels.length; j++) {
-    panels[j].classList.toggle('active', panels[j].id === 'tab-' + name);
-  }
-  try { history.replaceState(null, '', '#' + name); } catch (e) {}
-}
-(function () {
-  var hash = (location.h
+<script src="../../assets/tabs.js?v=1"></script>
+
+</body>
+</html>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
